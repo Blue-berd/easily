@@ -1,0 +1,60 @@
+<%- include('layout'); -%>
+
+  <div class="container my-5">
+    <h1>
+      <%= (isUpdate ? 'Update' : 'Job Application' ) %> Form
+    </h1>
+
+    <form action="<%= (isUpdate ? '/jobs/' + job.id : '/jobs') %>" method="<%= (isUpdate ? 'put' : 'post') %>" enctype="application/x-www-form-urlencoded">
+      <div class="mb-3">
+        <label for="jobCategory" class="form-label">Job Category</label>
+        <input type="text" name="jobCategory" class="form-control" id="jobCategory"
+          value="<%= (isUpdate ? job.category : '') %>" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="jobDesignation" class="form-label">Job Designation</label>
+        <input type="text" name="jobDesignation" class="form-control" id="jobDesignation"
+          value="<%= (isUpdate ? job.designation : '') %>" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" name="location" class="form-control" id="location"
+          value="<%= (isUpdate ? job.location : '') %>" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="companyName" class="form-label">Company Name</label>
+        <input type="text" name="companyName" class="form-control" id="companyName"
+          value="<%= (isUpdate ? job.companyName : '') %>" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="salary" class="form-label">Salary</label>
+        <input type="number" name="salary" class="form-control" id="salary" value="<%= (isUpdate ? job.salary : '') %>"
+          required />
+      </div>
+
+      <div class="mb-3">
+        <label for="numberOfOpenings" class="form-label">Number of Openings</label>
+        <input type="number" name="numberOfOpenings" class="form-control" id="numberOfOpenings"
+          value="<%= (isUpdate ? job.openings : '') %>" required />
+      </div>
+      <div class="mb-3">
+        <label for="skills" class="form-label">Skills</label>
+        <textarea name="skills" class="form-control" id="skills" rows="3"
+          required><%= (isUpdate ? job.skills : '') %></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="applyBy" class="form-label">Apply By</label>
+        <input type="date" name="applyBy" class="form-control" id="applyBy" value="<%= (isUpdate ? job.applyBy : '') %>"
+          required />
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        <%= (isUpdate ? 'Update' : 'Submit' ) %> Application
+      </button>
+    </form>
+  </div>

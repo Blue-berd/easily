@@ -1,0 +1,48 @@
+<%- include('layout'); -%>
+
+    <div class="applicant-list container">
+        <h2>Total Applicants : <%= applicants.length %>
+        </h2>
+
+        <% if (applicants.length> 0) { %>
+            <h2 class="mb-4">Applicant List for Job <%= job.company %>
+            </h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Index</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Resume</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% applicants.forEach((applicant, i)=> { %>
+                        <tr>
+                            <td>
+                                <%= i %>
+                            </td>
+                            <td>
+                                <%= applicant.name %>
+                            </td>
+                            <td>
+                                <%= applicant.email %>
+                            </td>
+                            <td>
+                                <%= applicant.phone %>
+                            </td>
+
+                            <td>
+                                <a href='/resume/<%= applicant.resume.split("\\")[2] %>' class="btn btn-primary">View Resume</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+            <% } else { %>
+                <p>No applicants for this job.</p>
+                <% } %>
+    </div>

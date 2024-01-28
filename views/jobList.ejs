@@ -1,0 +1,48 @@
+<%- include('layout'); -%>
+
+<div class="container my-5">
+  <h1 class="mb-4 text-center">Job Listings</h1>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% jobs.forEach(job=> { %>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-info"><strong style="color: black; font-weight: bold;">Company:</strong>
+            <span class="text-info"><%= job.companyName %></span>
+          </h5>
+          <p class="card-title text-info">
+            <strong style="color: black; font-weight: bold;">Designation:</strong>
+            <%= job.designation %>
+          </p>
+          <p class="card-info"><strong style="color: black; font-weight: bold;">Location:</strong>
+            <span class="text-info"><%= job.location %></span>
+          </p>
+          <p class="card-info"><strong style="color: black; font-weight: bold;">Salary:</strong>
+            <span class="text-info"><%= job.salary %></span>
+          </p>
+          <!-- Skills -->
+          <p class="card-info"><strong style="color: black; font-weight: bold;">Skills: </strong>
+            <span class="text-info"><%= job.skills %></span>
+          </p>
+
+          <p class="card-info"><strong style="color: black; font-weight: bold;">Apply By:</strong>
+            <span class="text-info"><%= job.applyBy %></span>
+          </p>
+          <% if (user && user.role==='recruiter' ) { %>
+          <!-- Show edit option for recruiters -->
+          <a href="/jobs/<%= job.id %>" class="btn btn-warning">Edit Job</a>
+          <a href="/applied/candidates/job/<%= job.id %>" class="btn btn-success">See Applicants</a>
+          <% } else { %>
+          <!-- Show apply button for candidates -->
+          <% if(session==false){ %>
+          <a href="/apply/jobs/<%= job.id %>" class="btn btn-warning">Apply Now</a>
+          <% } %>
+          <% } %>
+          <a href="/jobs/<%= job.id %>" class="btn btn-primary">View more</a>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
