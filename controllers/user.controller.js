@@ -32,7 +32,7 @@ export const handleLogin = (req, res) => {
 };
 export const renderHome = (req, res) => {
   if (isLoggedIn(req)) {
-    return res.redirect("/jobs");
+    return res.render("/jobList", {title:"Job list", session:isLoggedIn(req)});
   }
   return res.render("home", {
     session: isLoggedIn(req),
