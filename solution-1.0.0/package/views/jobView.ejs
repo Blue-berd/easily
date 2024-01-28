@@ -1,0 +1,54 @@
+<%- include('layout'); -%>
+
+    <div class="container my-5">
+        <h1 class="mb-4 text-center">Job Details</h1>
+
+        <div class="card text-left">
+            <% if(recruiter){ %>
+                <div class="d-flex justify-content-start">
+                    <form action="/jobs/view/update/<%= job.id %>" method="get" class=" me-2">
+                        <button type="submit" class="btn btn-warning">Edit Job</button>
+                    </form>
+                    <form action="/jobs/<%= job.id %>" method="delete" class=" me-2">
+                        <button type="submit" class="btn btn-danger">Delete Job</button>
+                    </form>
+                </div>
+                <% }%>
+
+                    <div class="card-body text-left">
+                        <h5 class="card-title"><strong> Company :
+                                <%= job.companyName %>
+                            </strong>
+                        </h5>
+                        <h6 class="card-title"><strong>Category :</strong>
+                            <%= job.category %>
+                        </h6>
+                        <p class="card-text "><strong>Designation:</strong>
+                            <%= job.designation %>
+                        </p>
+                        <p class="card-text"><strong>Location:</strong>
+                            <%= job.location %>
+                        </p>
+                        <p class="card-text"><strong>Salary:</strong> $<%= job.salary %>
+                        </p>
+                        <p class="card-text"><strong>Skills:</strong>
+                            <%= job.skills %>
+                        </p>
+                        <p class="card-text"><strong>Apply By:</strong>
+                            <%= job.applyBy %>
+                        </p>
+
+                        <!-- Buttons for editing, deleting, and applying -->
+                        <% if( session == false ){ %>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a href="apply/jobs/<%= job.id %>" class="btn btn-primary">Apply Now</a>
+                            </div>
+                            <% } else{ %>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <a href="/applied/candidates/job/<%= job.id %>" class="btn btn-primary">See Applicants</a>
+                                </div>
+                            <% } %>
+
+                    </div>
+        </div>
+    </div>

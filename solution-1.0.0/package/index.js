@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
-app.set("views", path.join(process.cwd(),"views"));
+app.set("views", "./views");
 
 app.use(setLastVisit);
 app.use((req, res, next) => {
